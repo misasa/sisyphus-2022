@@ -69,7 +69,7 @@
         });
         buttonClearData.addEventListener('click', function(e) {
             si.app.clearData();
-            //Ti.Platform.openURL('http://dream.misasa.okayama-u.ac.jp/documentation/Archives/client-Android.apk');
+            //Ti.Platform.openURL('http://dream.misasa.okayama-u.ac.jp/Archives/client-Android-2022.apk');
         });
 
         var buttonUpdate = Ti.UI.createButton({
