@@ -16,3 +16,17 @@ build_apk:
   artifacts:
     paths:
       - build/android/app/build/outputs/apk 
+
+job_deploy_to_public_server:
+  stage: deploy
+  image:  btmash/alpine-ssh-rsync:latest
+  before_script:
+    - set +x
+    - echo "$SSH_PRIVATE_KEY" > ~/.ssh/id_rsa
+    - set -x
+    - chmod 600 ~/.ssh/id_rsa
+
+  script:
+     - ls
+#    - rsync -avh --delete ./* falcon@dream.misasa.okayama-u.ac.jp:/home/falcon/public_html/documentation/
+#    - ssh falcon@dream.misasa.okayama-u.ac.jp 'gem generate_index -d /home/falcon/public_html/documentation/rubygems -u'
