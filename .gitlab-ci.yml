@@ -1,0 +1,18 @@
+variables:
+   DOCKER_DRIVER: overlay2
+   DOCKER_TLS_CERTDIR: ""
+stages:
+  - build
+  - deploy
+
+build_apk:
+  stage: build
+  image: docker:19.03.0
+  services:
+    - docker:19.03.0-dind
+  script:
+    - echo "building..."
+    - docker run --rm -it -v $PWD:/app gitlab.misasa.okayama-u.ac.jp:4567/titanium/titanium:37e506823bc986df4683dd7c8f1f2b4c6edcaf0a titanium build -p android -b
+  artifacts:
+    paths:
+      - build/android/app/build/outputs/apk 
