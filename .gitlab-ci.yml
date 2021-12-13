@@ -12,7 +12,7 @@ build_apk:
     - docker:19.03.0-dind
   script:
     - echo "building..."
-    - docker run --rm -v $PWD:/app gitlab.misasa.okayama-u.ac.jp:4567/titanium/titanium:37e506823bc986df4683dd7c8f1f2b4c6edcaf0a titanium build -p android -b
+    - docker run --rm -v $PWD:/projects/app -w /projects/app gitlab.misasa.okayama-u.ac.jp:4567/titanium/titanium:37e506823bc986df4683dd7c8f1f2b4c6edcaf0a titanium build -p android -b
   artifacts:
     paths:
       - build/android/app/build/outputs/apk 
