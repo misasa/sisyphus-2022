@@ -81,7 +81,7 @@
             height : Ti.UI.SIZE
         });
         buttonUpdate.addEventListener('click', function(e) {
-            Ti.Platform.openURL('http://dream.misasa.okayama-u.ac.jp/documentation/Archives/client-Android.apk');
+            Ti.Platform.openURL('http://dream.misasa.okayama-u.ac.jp/Archives/client-Android-2022.apk');
         });
 
         var buttonHelp = Ti.UI.createButton({
