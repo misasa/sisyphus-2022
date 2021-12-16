@@ -27,13 +27,14 @@ const createAddChildWindow = function(si) {
         win.functions = {};
         //event
         Ti.App.addEventListener('app:logged', function(e){
-            // Ti.API.info('app:logged fired');
+            //Ti.API.info('app:logged fired');
             // Ti.API.info(e);
             var _row = Ti.UI.createTableViewRow({
                 height : Ti.UI.SIZE
             });
             var _label = Ti.UI.createLabel(si.combine($$.logText, {
                 text : e.message,
+                color : 'white',
                 bottom : 0,
                 width : '100%',
                 height : 'auto',
@@ -196,7 +197,7 @@ const createAddChildWindow = function(si) {
         });
 
         var logTable = Ti.UI.createTableView({
-            data: [],
+            data: [{}],
             separatorColor : null
         });
 
@@ -358,6 +359,7 @@ const createAddChildWindow = function(si) {
                 si.sound_mailerror.play();                
                 si.app.log.error(_message + 'error');
             } else if (_mode == 'ok'){
+                Ti.API.info("ok");
                 si.app.log.info(_message + 'ok')
             }
             
@@ -419,7 +421,7 @@ const createAddChildWindow = function(si) {
 
         win.functions.clickHomeButton = function(){
             Ti.API.info('clickHomeButton');
-            default_global_id = Ti.App.Properties.getString('current_box_global_id');
+            var default_global_id = Ti.App.Properties.getString('current_box_global_id');
             if (default_global_id === null){
                 ui.myAlert({message:'Set your home first', title:''});
             } else {

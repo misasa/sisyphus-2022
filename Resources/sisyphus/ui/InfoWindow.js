@@ -48,7 +48,7 @@
             //top : '45%',
             font : {fontWeight : 'bold',fontSize : 36},
             textAlign : 'left',
-            text : "\u00A9 2012-2021 Institute for Planetary Materials, Okayama University"
+            text : "\u00A9 2012-2022 Institute for Planetary Materials, Okayama University"
         });
 
         var label_version = Ti.UI.createLabel({
