@@ -54,7 +54,7 @@ var tabGroup = Ti.UI.createTabGroup({
 });
 	
 var tabMain = Ti.UI.createTab({
-	title : 'Main',
+	title : 'Dashboard',
 	window : createAddChildWindow(si)
 });
 tabGroup.addTab(tabMain);

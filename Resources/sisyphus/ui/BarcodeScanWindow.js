@@ -59,7 +59,7 @@ const createBarcodeScanWindow = function(_args){
     overlay.add(switchButton);
     
     var cancelButton = Ti.UI.createButton({
-        title: 'Cancel',
+        title: 'Close',
         textAlign: 'center',
         color: '#000',
         backgroundColor: '#fff',
@@ -134,7 +134,7 @@ const createBarcodeScanWindow = function(_args){
     function reset() {
         scannedBarcodes = {};
         scannedBarcodesCount = 0;
-        cancelButton.title = 'Cancel';
+        cancelButton.title = 'Close';
     }
     
     
