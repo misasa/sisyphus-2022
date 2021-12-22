@@ -2,7 +2,7 @@
 <ti:app xmlns:ti="http://ti.appcelerator.org">
 	<id>jp.ac.okayama.misasa.Sisyphus</id>
 	<name>Sisyphus</name>
-	<version>3.0.2</version>
+	<version>3.0.3</version>
 	<publisher>IPM</publisher>
 	<url>https://dream.misasa.okayama-u.ac.jp</url>
 	<description></description>

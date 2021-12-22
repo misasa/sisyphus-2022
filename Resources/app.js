@@ -66,7 +66,7 @@ var tabSettings = Ti.UI.createTab({
 tabGroup.addTab(tabSettings);
 
 var tabHelp = Ti.UI.createTab({
-	title : 'Info',
+	title : 'About',
 	window : createInfoWindow(si)
 });
 tabGroup.addTab(tabHelp);
