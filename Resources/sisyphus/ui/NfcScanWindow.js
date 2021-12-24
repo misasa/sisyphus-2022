@@ -16,7 +16,7 @@ const createNfcScanWindow = function(_args){
     win.buttons.Close.left = 0;
     win.add(win.buttons.Close);
     
-    success_callback = function (global_id) {
+    var success_callback = function (global_id) {
         if (nfc.tagDataValue === null) {
             alert('Tag is blank.');
         } else {
@@ -48,7 +48,7 @@ const createNfcWriteWindow = function(value, _args) {
     win.buttons.Close.left = 0;
     win.add(win.buttons.Close);
     
-    success_callback = function () {
+    var success_callback = function () {
         nfc.onWrite(value, {onsuccess: function() {
             _args.onsuccess();
             win.close();
@@ -82,7 +82,7 @@ const createScanFelicaWindow = function(_args){
     win.buttons.Close.left = 0;
     win.add(win.buttons.Close);
 
-    success_callback = function () {
+    var success_callback = function () {
         nfc.onReadFelica({onsuccess: function() {
                 if (nfc.tagDataValue === null) {
                     alert('Tag is blank.');
