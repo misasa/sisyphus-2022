@@ -17,6 +17,7 @@ nfc.isEnabled = function() {
 }
 
 nfc.setupNfc = function (success_callback, win) {
+    Ti.API.info("nfc.setupNfc...")
     if (success_callback == undefined) { success_callback = function() {}; }
     
     nfc.adapter = nfc.module.createNfcAdapter({

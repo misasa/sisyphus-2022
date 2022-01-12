@@ -1,6 +1,8 @@
 import {si} from './sisyphus/sisyphus'
 import {model} from './sisyphus/model/medusa'
 si.model = model;
+Ti.API.info("loading...")
+Ti.API.info(si.nfc)
 import {createInfoWindow} from './sisyphus/ui/InfoWindow'
 import {createSettingsWindow} from './sisyphus/ui/SettingsWindow'
 import {createAddChildWindow} from './sisyphus/ui/android/AddChildWindow'
@@ -47,7 +49,7 @@ if (Ti.App.Properties.getInt('newStone') == null) {
     Ti.App.Properties.setInt('newStone', si.config.Medusa.newStone);
 }
 
-Ti.App.Properties.setBool('NfcEnabled', false);
+Ti.App.Properties.setBool('NfcEnabled', true);
 
 var tabGroup = Ti.UI.createTabGroup({
 	height : 300

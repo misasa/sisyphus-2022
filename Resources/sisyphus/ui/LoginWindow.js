@@ -1,4 +1,6 @@
 import {ui} from './ui'
+import { createScanFelicaWindow } from './NfcScanWindow'
+
 const   createLoginWindow = function(_args) {
         var si = _args.si;
         var $$ = ui.properties; 
@@ -185,7 +187,8 @@ const   createLoginWindow = function(_args) {
                 var _win = null;
                 var staffId = "";
                 var cardId = "";
-                _win = si.nfc.createScanFelicaWindow({
+                _win = createScanFelicaWindow({
+                    si: si,
                     onsuccess : function() {
                         if (si.nfc.tagDataValue) {
                             staffId = readFelicaData();
