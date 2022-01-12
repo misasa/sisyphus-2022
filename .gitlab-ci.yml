@@ -28,7 +28,7 @@ job_deploy_to_public_server:
 
   script:
      - scp build/android/app/build/outputs/apk/debug/app-debug.apk falcon@dream.misasa.okayama-u.ac.jp:/home/falcon/public_html/Archives/client-Android-2022.apk
-     - ssh falcon@dream.misasa.okayama-u.ac.jp 'ln -s /home/falcon/public_html/Archives /home/falcon/public_html/dream/Archives'
+     - ssh falcon@dream.misasa.okayama-u.ac.jp 'rm /home/falcon/public_html/dream/Archives || true && ln -s /home/falcon/public_html/Archives /home/falcon/public_html/dream/Archives'
 #     - scp build/android/app/build/outputs/apk/debug/app-debug.apk falcon@dream.misasa.okayama-u.ac.jp:/home/falcon/public_html/dream/Archives/client-Android-2022.apk
 #    - rsync -avh --delete ./* falcon@dream.misasa.okayama-u.ac.jp:/home/falcon/public_html/documentation/
 #    - ssh falcon@dream.misasa.okayama-u.ac.jp 'gem generate_index -d /home/falcon/public_html/documentation/rubygems -u'
