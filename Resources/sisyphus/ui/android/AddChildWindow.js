@@ -430,9 +430,9 @@ const createAddChildWindow = function(si) {
         };
 
         win.functions.clickMenuButton = function(){
-            var options = ['Open with browser', 'Take a photo', 'Add a local file', 'Edit', 'Search', 'History','Surface','Read barcode tag','Write barcode tag'];
+            var options = ['Open with browser', 'Take a photo', 'Add a local file', 'Edit', 'Search', 'History','Surface','Scan barcode','Print barcode'];
             if (si.nfc.isEnabled()) {
-                options = options.concat(['Read NFC tag', 'Write NFC tag']);
+                options = options.concat(['Read NFC', 'Write NFC']);
             }
             options = options.concat(['Logout']);
             var optionDialogForMenu = Ti.UI.createOptionDialog({
@@ -485,7 +485,7 @@ const createAddChildWindow = function(si) {
                         var windowHistory = win.functions.clickHistoryButton();
                         si.app.tabGroup.activeTab.open(windowHistory,{animated:true});
                         break;
-                    case 'Read barcode tag':
+                    case 'Scan barcode':
                         var _win = createBarcodeScanWindow();
                         _win.setCallback(
                             function(e){
@@ -501,10 +501,10 @@ const createAddChildWindow = function(si) {
                             animated : true
                         });
                         break;
-                    case 'Write barcode tag':
+                    case 'Print barcode':
                         win.functions.printLabelfor(parent);
                         break;
-                    case 'Read NFC tag':
+                    case 'Read NFC':
                         var windowScan = createNfcScanWindow({
                             obj: parent,
                             success : function(global_id) {
@@ -518,7 +518,7 @@ const createAddChildWindow = function(si) {
                             animated : true
                         });
                         break;
-                    case 'Write NFC tag':
+                    case 'Write NFC':
                         win.functions.printProcess(parent);
                         break;
                     default:

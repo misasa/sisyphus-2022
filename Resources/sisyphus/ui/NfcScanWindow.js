@@ -27,18 +27,18 @@ const createNfcScanWindow = function(_args){
     };
     win.addEventListener('open', function(e) {
         Ti.API.info('NFC Scan window open...');
-        setupNfc();
+        setupNfc(win);
         //nfc.setupNfc(success_callback, win);
         //nfc.adapter.enableForegroundDispatch(nfc.dispatchFilter);
     });
     
     return win;
 }
-function setupNfc() {
-    Ti.API.info('setupNfc foreground... ');
+function setupNfc(win) {
+    Ti.API.info('setupNfc foreground with win... ');
 	// Create the NFC adapter to be associated with this activity. 
 	// There should only be ONE adapter created per activity.
-	nfcAdapter = nfc.createNfcAdapter({
+	var nfcAdapter = nfc.createNfcAdapter({
 		onNdefDiscovered: handleDiscovery,
 		onTagDiscovered: handleDiscovery,
 		onTechDiscovered: handleDiscovery
@@ -50,17 +50,26 @@ function setupNfc() {
 		alert('NFC is not enabled on this device');
 		return;
 	}
-	
+	Ti.API.info("nfcAdapter...");
+    Ti.API.info(nfcAdapter);
 	// All tag scans are received by the activity as a new intent. Each
 	// scan intent needs to be passed to the nfc adapter for processing.
 	var act = Ti.Android.currentActivity;
+    Ti.API.info('act...');
+    Ti.API.info(act);
+    var act = win.activity;
+    Ti.API.info('act...');
+    Ti.API.info(act);
 	act.addEventListener('newintent', function(e) {
+        Ti.API.info("newintent...")
 		nfcAdapter.onNewIntent(e.intent);
 	});    
 	act.addEventListener('resume', function(e) {
-		nfcAdapter.enableForegroundDispatch(dispatchFilter);
+        Ti.API.info("resume...")
+        nfcAdapter.enableForegroundDispatch(dispatchFilter);
 	});
 	act.addEventListener('pause', function(e) {
+        Ti.API.info("pause...")
 		nfcAdapter.disableForegroundDispatch();
 	});
 

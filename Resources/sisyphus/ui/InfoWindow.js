@@ -60,6 +60,15 @@
             text : 'Sisyphus for Medusa' + ' ' + Ti.App.version 
         });
 
+        var label_known_problems = Ti.UI.createLabel({
+            //font : font,
+            height : Ti.UI.SIZE,
+            //top : '45%',
+            font : {fontWeight : 'bold', fontSize : 24},
+            textAlign : 'left',
+            text : 'Known problems: NFC does not work.\n' 
+        });
+
         var buttonClearData = Ti.UI.createButton({
             title : 'Clear data',
             font : {fontSize:36},
@@ -98,7 +107,8 @@
         image_and_info.add(image_view);
         image_and_info.add(info_view);        
         info_view.add(label_version);
-        info_view.add(label_copyright);        
+        info_view.add(label_copyright);
+        info_view.add(label_known_problems);        
 //        footer.add(buttonClearData);
         footer.add(buttonUpdate);
         footer.add(buttonHelp);
