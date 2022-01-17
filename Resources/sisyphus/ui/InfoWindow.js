@@ -64,9 +64,9 @@
             //font : font,
             height : Ti.UI.SIZE,
             //top : '45%',
-            font : {fontWeight : 'bold', fontSize : 24},
+            font : {fontWeight : 'bold', fontSize : 18},
             textAlign : 'left',
-            text : 'Known problems:\nLogin by NFC is not work supprted.\nRead and write label by NFC are not supported.' 
+            text : 'Known problems:\nLogin by NFC is not supprted.\nRead and write label by NFC are not supported.' 
         });
 
         var buttonClearData = Ti.UI.createButton({
