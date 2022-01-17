@@ -86,8 +86,6 @@ const createAddChildWindow = function(si) {
                         if (si.app.template_names() == null){
                             si.app.getTemplateNames();
                         }
-
- 
                         win.functions.refresh();
                     },
                     onerror : function(e){
@@ -430,7 +428,7 @@ const createAddChildWindow = function(si) {
         };
 
         win.functions.clickMenuButton = function(){
-            var options = ['Open with browser', 'Take a photo', 'Add a local file', 'Edit', 'Search', 'History','Surface','Scan barcode','Print barcode'];
+            var options = ['Open with browser', 'Take a photo', 'Add a local file', 'Edit', 'Search', 'History','Surface','Scan barcode','Print barcode', 'Scan and print barcode'];
             if (si.nfc.isEnabled()) {
                 options = options.concat(['Read NFC', 'Write NFC']);
             }
@@ -504,6 +502,9 @@ const createAddChildWindow = function(si) {
                     case 'Print barcode':
                         win.functions.printLabelfor(parent);
                         break;
+                    case 'Scan and print barcode':
+                        win.functions.scanPrintBarcode();
+                        break;
                     case 'Read NFC':
                         var windowScan = createNfcScanWindow({
                             obj: parent,
@@ -529,20 +530,20 @@ const createAddChildWindow = function(si) {
         };
 
         win.functions.clickPrintButton = function(e) {
-            if (!Ti.App.Properties.getBool('printLabel')){
-                ui.myAlert({message: 'Turn label on'});
-                return;
-            }
-            if (parent == null){
-                ui.alert_no_parent();
-                return;
-            }
-            
-            if (Ti.App.Properties.getInt('tagWriter') === 1) {
-                win.functions.printProcess(parent);
-            } else {
-                win.functions.printLabelfor(parent);
-            }
+            win.functions.scanPrintBarcode();
+            //if (!Ti.App.Properties.getBool('printLabel')){
+            //    ui.myAlert({message: 'Turn label on'});
+            //    return;
+            //}
+            //if (parent == null){
+            //    ui.alert_no_parent();
+            //    return;
+            //}
+            //if (Ti.App.Properties.getInt('tagWriter') === 1) {
+            //    win.functions.printProcess(parent);
+            //} else {
+            //    win.functions.printLabelfor(parent);
+            //}
         }
 
         win.functions.clickCameraButton = function(){
@@ -713,10 +714,10 @@ const createAddChildWindow = function(si) {
         };
 
         win.functions.printLabelfor = function(_record){
+            Ti.API.info('printLabelfor...');
             if (!Ti.App.Properties.getBool('printLabel')){
                 return;
             }
-            Ti.API.info('printLabelfor...');
             var _message = _record.global_id + '...' + _record.name + '...label...';
             si.app.log.info(_message + 'sending...ok');
             _message += 'creating...';
@@ -750,7 +751,37 @@ const createAddChildWindow = function(si) {
             win.open();
         };
 
-
+        win.functions.scanPrintBarcode = function(){
+            if (!Ti.App.Properties.getBool('printLabel')){
+                ui.myAlert({message: 'Turn label on'});
+                return;
+            }
+            var _win = createBarcodeScanWindow();
+            _win.setCallback(
+                function(e){
+                    Ti.API.info("callback@ScanandPrintBarcode");
+                    if (e && e.result) {
+                        //loadParent(e.result);
+                        si.model.medusa.getRecordFromGlobalId({
+                            global_id : e.result,
+                            username : Ti.App.Properties.getString('username'),
+                            password : Ti.App.Properties.getString('password'),
+                            onsuccess : function(_response) {
+                                Ti.API.info("inside callback@ScanandPrintBarcode")
+                                Ti.API.info(_response)
+                                win.functions.printLabelfor(_response);
+                            },
+                            onerror : function(e) {
+                            }
+                        });
+                    }
+                    _win.cancel();
+                }
+            );    
+            si.app.tabGroup.activeTab.open(_win, {
+                animated : true
+            });
+        };
         function uploadImageFromAlbum() {
             Ti.Media.openPhotoGallery({
                 success : function(event) {
