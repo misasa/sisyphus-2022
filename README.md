@@ -23,5 +23,5 @@ an open-source framework that allows the creation of native mobile
 apps on platforms including iOS and Android from a single JavaScript
 codebase.
 
-As of March 7, 2033, the App can be build with version `10.1.1.GA`
+As of March 7, 2022, the App can be build with version `10.1.1.GA`
 that is General Availability release.
